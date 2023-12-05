@@ -8,7 +8,7 @@
   body {
     margin: 0;
     padding: 0;
-    background-image: url('lotus-background.png'); /* Replace with the path to your background image */
+    background-image: url('Common/lotus-background.png'); /* Replace with the path to your background image */
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -86,8 +86,8 @@
 <div class="container-wrapper">
     <div class="envelope-container" onclick="this.classList.toggle('hover');">
         <div class="envelope-flipper" id="Envelope">
-            <img class="front" src="DaNang/Envelope_Front.png" alt="Front of baohy Envelope">
-            <img class="back" src="DaNang/Envelope_Back.png" alt="Back of baohy Envelope">
+            <img class="front" src="Common/Envelope_Front.png" alt="Front of baohy Envelope">
+            <img class="back" src="Common/Envelope_Back.png" alt="Back of baohy Envelope">
         </div>
     </div>
 
@@ -111,6 +111,34 @@
 </div>
 
 <script>
+    function setImageSources(location) {
+        if (location === 'danang') {
+            document.getElementById('BaoHy').getElementsByClassName('front')[0].src = 'Danang/BaoHy_Front.png';
+            document.getElementById('BaoHy').getElementsByClassName('back')[0].src = 'Danang/BaoHy_Back.png';
+            document.getElementById('Invitation').getElementsByClassName('front')[0].src = 'Danang/ThiepMoi_Front.png';
+            document.getElementById('Invitation').getElementsByClassName('back')[0].src = 'Danang/ThiepMoi_Back.png';
+        } else if (location === 'hanoi_md') {
+            document.getElementById('BaoHy').getElementsByClassName('front')[0].src = 'Hanoi_MD/BaoHy_Front.png';
+            document.getElementById('BaoHy').getElementsByClassName('back')[0].src = 'Hanoi_MD/BaoHy_Back.png';
+            document.getElementById('Invitation').getElementsByClassName('front')[0].src = 'Hanoi_MD/ThiepMoi_Front.png';
+            document.getElementById('Invitation').getElementsByClassName('back')[0].src = 'Hanoi_MD/ThiepMoi_Back.png';
+        } else if (location == 'hanoi_mm') {
+            document.getElementById('BaoHy').getElementsByClassName('front')[0].src = 'Hanoi_MM/BaoHy_Front.png';
+            document.getElementById('BaoHy').getElementsByClassName('back')[0].src = 'Hanoi_MM/BaoHy_Back.png';
+            document.getElementById('Invitation').getElementsByClassName('front')[0].src = 'Hanoi_MM/ThiepMoi_Front.png';
+            document.getElementById('Invitation').getElementsByClassName('back')[0].src = 'Hanoi_MM/ThiepMoi_Back.png';
+        } else if (location == 'hanoi_dd') {
+            document.getElementById('BaoHy').getElementsByClassName('front')[0].src = 'Hanoi_DD/BaoHy_Front.png';
+            document.getElementById('BaoHy').getElementsByClassName('back')[0].src = 'Hanoi_DD/BaoHy_Back.png';
+            document.getElementById('Invitation').getElementsByClassName('front')[0].src = 'Hanoi_DD/ThiepMoi_Front.png';
+            document.getElementById('Invitation').getElementsByClassName('back')[0].src = 'Hanoi_DD/ThiepMoi_Back.png';
+        }
+    }
+
+    // Check the location parameter and set image sources
+    const locationParam = getQueryParam('location');
+    setImageSources(locationParam);
+
     const screen = document.querySelector('.container-wrapper');
     const envelopeObject = document.getElementById('Envelope');
     const baohyContainer = document.getElementById('BaoHy_Container');
