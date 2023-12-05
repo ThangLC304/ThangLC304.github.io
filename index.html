@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding baohy</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: url('lotus-background.png'); /* Replace with the path to your background image */
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .container-wrapper {
+    position: relative;
+  }
+  .envelope-container, .baohy-container .invitation-container{
+    perspective: 1000px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+  .envelope-container {
+    transform: translate(-50%, -50%);
+  }
+
+  .baohy-container {
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(0%, -50%);
+  }
+  .invitation-container {
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(0%, 50%);
+  }
+
+  .envelope-flipper, .baohy-flipper, .invitation-flipper {
+    height: 600px;
+    width: 360px;
+    transition: transform 1.2s;
+    transform-style: preserve-3d;
+  }
+  .envelope-flipper {
+    z-index: 3;
+  }
+  .baohy-flipper {
+    z-index: 2;
+    transform-origin: left;
+  }
+  .invitation-flipper {
+    z-index: 2;
+  }
+
+  .front, .back {
+    backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  .front {
+    z-index: 2;
+    transform: rotateY(0deg);
+  }
+  .back {
+    transform: rotateY(-180deg);
+  }
+  .envelope-container:hover .envelope-flipper, .envelope-container.hover .envelope-flipper {
+    transform: rotateY(-180deg);
+  }
+  .baohy-container:hover .baohy-flipper, .baohy-container.hover .baohy-flipper {
+    transform: rotateY(180deg);
+  }
+  .invitation-container:hover .invitation-flipper, .invitation-container.hover .invitation-flipper {
+    transform: rotateY(-180deg);
+  }
+</style>
+</head>
+<body>
+
+<div class="container-wrapper">
+    <div class="envelope-container" onclick="this.classList.toggle('hover');">
+        <div class="envelope-flipper" id="Envelope">
+            <img class="front" src="DaNang/Envelope_Front.png" alt="Front of baohy Envelope">
+            <img class="back" src="DaNang/Envelope_Back.png" alt="Back of baohy Envelope">
+        </div>
+    </div>
+
+    <!-- make a hidden object of invitation-container -->
+    <div class="invitation-container", id="Invitation_Container";>
+        <div class="invitation-flipper" id="Invitation">
+            <img class="front" src="DaNang/ThiepMoi_Front.png" alt="Front of Wedding Invitation">
+            <img class="back" src="DaNang/ThiepMoi_Back.png" alt="Back of Wedding Invitation">
+        </div>
+    </div>
+
+    <!-- make a hidden object of baohy-container -->
+    <div class="baohy-container" id="BaoHy_Container";>
+        <div class="baohy-flipper" id="BaoHy">
+            <img class="back" src="DaNang/BaoHy_Back.png" alt="Front of Wedding Baohy">
+            <img class="front" src="DaNang/BaoHy_Front.png" alt="Back of Wedding Baohy">
+        </div>
+    </div>
+
+    
+</div>
+
+<script>
+    const screen = document.querySelector('.container-wrapper');
+    const envelopeObject = document.getElementById('Envelope');
+    const baohyContainer = document.getElementById('BaoHy_Container');
+    const baohyObject = document.getElementById('BaoHy');
+    const invitationContainer = document.getElementById('Invitation_Container');
+    const invitationObject = document.getElementById('Invitation');
+
+    function showBaoHy() {
+        baohyContainer.style.visibility = 'visible'; // Make the element visible
+        baohyContainer.style.opacity = '1'; // Start the fade-in
+        baohyContainer.style.transition = 'opacity 1.5s linear'; // Apply the transition
+    }
+
+    function showInvitation() {
+        invitationContainer.style.visibility = 'visible'; // Make the element visible
+        invitationContainer.style.opacity = '1'; // Start the fade-in
+        invitationContainer.style.transition = 'opacity 0.5s linear'; // Apply the transition
+    }
+
+    
+    envelopeObject.addEventListener('click', function() {
+        // disable hovering
+        this.onmouseenter = null;
+        this.onmouseleave = null;
+        this.classList.remove('hover');
+
+        // Ensure the front of the envelope is showing when moving out
+        this.style.transform = 'rotateY(0deg) translateY(100%)';
+        this.style.opacity = '0';
+        this.style.transition = 'transform 1.5s, opacity 1.5s';
+
+        // make baohy-container and invitation-container visible
+        showBaoHy();
+        //  wait for 1.5s to show invitation-container
+        setTimeout(showInvitation, 1500);
+
+        // Remove the ability to trigger the flip on hover
+        this.style.pointerEvents = 'none';
+    });
+
+    // baohyObject.addEventListener('mouseenter', function() {
+    //     // move to the right half the size of the baohy and rotate 180deg to show the back
+    //     this.style.transform = 'rotateY(180deg)';
+    // });
+
+</script>
+
+</body>
+</html>
