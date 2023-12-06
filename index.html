@@ -79,6 +79,18 @@
   .invitation-container:hover .invitation-flipper, .invitation-container.hover .invitation-flipper {
     transform: rotateY(-180deg);
   }
+
+  .invite-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 22px;
+    font-weight: bold;
+    position: absolute;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* no wrap */
+    white-space: nowrap;
+  }
 </style>
 </head>
 <body>
@@ -107,10 +119,34 @@
         </div>
     </div>
 
+    <div class="invite-text" id="invitation_text">
+      Guest Invitation Text
+    </div>
+    
+
     
 </div>
 
 <script>
+    // Function to get query parameters from the URL
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Function to display the guest's name
+    function displayGuestName() {
+        const guestId = getQueryParam('guestid');
+        // TODO: Replace this with actual logic to fetch the guest's name using the guestId
+        // For demonstration, let's assume a guest name is returned for a given ID
+        const guestName = guestId ? 'Guest Name for ID ' + guestId : 'Guest Name Not Found';
+        document.getElementById('guestName').innerText = guestName;
+    }
+    if (getQueryParam('guestid')) {
+        displayGuestName();
+    }
+
+
     function setImageSources(location) {
         if (location === 'danang') {
             document.getElementById('BaoHy').getElementsByClassName('front')[0].src = 'Danang/BaoHy_Front.png';
