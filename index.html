@@ -122,7 +122,7 @@
     </div>
 
     <div class="invite-text" id="invitation_text">
-      Guest Invitation Text
+      Thân mời quý khách/bạn
     </div>
     
 
@@ -196,7 +196,7 @@
 
     function fetchInvitationText(guestId) {
       // const csvUrl = "https://raw.githubusercontent.com/ThangLC304/ThangLC304.github.io/main/Common/WeddingGuestList%20-%20InviteData.csv"; // Replace with the URL to your hosted CSV file
-      const csvUrl = "Common/WeddingGuestList - InviteData.csv"; // Replace with the URL to your hosted CSV file
+      const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRG45shOvsKRmjuilXzW2TMG6id-EyhE-WywvD3vvD7AYP199aNKzCmiLDjQwSaOd_lI0BaoqTmHrwo/pub?gid=0&single=true&output=csv";
       fetch(csvUrl)
         .then(response => response.text())
         .then(csvText => {
@@ -248,6 +248,7 @@
     baohyObject.addEventListener('mouseleave', function() {
         console.log('baohy mouse leave');
         inviteTextObject.style.visibility = 'hidden';
+        inviteTextObject.style.opacity = '0';
     });
 
 </script>
