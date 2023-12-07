@@ -245,12 +245,8 @@
         setTimeout(showInviteText, 1500);
     });
 
-    invitationContainer.addEventListener('mouseenter', function() {
-        console.log('invitation mouse enter');
-    });
-
-    invitationContainer.addEventListener('mouseleave', function() {
-        console.log('invitation mouse leave');
+    baohyObject.addEventListener('mouseleave', function() {
+        console.log('baohy mouse leave');
         inviteTextObject.style.visibility = 'hidden';
     });
 
