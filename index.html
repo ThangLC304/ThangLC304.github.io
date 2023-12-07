@@ -83,16 +83,16 @@
     }
 
     .invite-text {
-      /* font-family: 'Albula Pro', cursive;
+      font-family: 'Albula Pro', cursive;
       font-size: 22px;
       font-weight: bold;
       position: absolute;
       top: 44%;
       left: 50%;
-      transform: translate(-50%, -50%); */
+      transform: translate(-50%, -50%);
       white-space: nowrap;
-      /* visibility: hidden; */
-      /* opacity: 0; */
+      visibility: hidden;
+      opacity: 0;
     }
   </style>
 </head>
@@ -123,7 +123,7 @@
     </div>
 
     <div id="invitation_text">
-      <!-- Guest Invitation Text -->
+      Guest Invitation Text
     </div>
     
 
@@ -139,35 +139,6 @@
 
     const guestId = getQueryParam('guestid');
 
-    function HandWriteText(displayText) {
-        console.log("Trying to hand-write text: " + displayText)
-        const FontSize = 22
-        var vara = new Vara(
-          "#invitation-text",
-          "https://raw.githubusercontent.com/akzhy/Vara/master/fonts/Satisfy/SatisfySL.json",
-          [
-            {
-              text: displayText,
-              y: 150,
-              fromCurrentPosition: { y: false },
-              duration: 2000,
-            }
-          ],
-          {
-            strokeWidth: 2,
-            color: "blue",
-            fontSize: FontSize,
-            textAlign: "center",
-          }
-        );
-        vara.ready(function () {
-          var erase = false;
-          vara.animationEndEvent(function () {
-            console.log("Animation End");
-          });
-        });
-    }
-
     function fetchInvitationText(guestId) {
       const csvUrl = "https://raw.githubusercontent.com/ThangLC304/ThangLC304.github.io/main/Common/WeddingGuestList%20-%20InviteData.csv"; // Replace with the URL to your hosted CSV file
 
@@ -180,28 +151,16 @@
             if (cells[3] === guestId) { // Column D (Invite_ID) matches guestId
               console.log("Found guestId: " + guestId)
               console.log("Invitation text: " + cells[2])
-              HandWriteText(cells[2]);
-              // HandWriteText("Than moi vc Suke")
+              if cells[2] {
+                document.getElementById('invitation_text').innerHTML = cells[2];
+              } else {
+                document.getElementById('invitation_text').innerHTML = 'Không tìm thấy mã mời';
+              }
             }
           }
         })
         .catch(error => console.error('Error fetching CSV:', error));
     }
-
-    // function fetchAndDisplayInvitationText(guestId) {
-    //   var fetched_text = fetchInvitationText(guestId);
-    //   if (fetched_text) {
-    //     document.getElementById('invitation_text').innerHTML = fetched_text;
-    //   } else {
-    //     document.getElementById('invitation_text').innerHTML = 'Không tìm thấy mã mời';
-    //   }
-    // }
-
-    // const guestId = getQueryParam('guestid');
-    // if (guestId) {
-    //   fetchAndDisplayInvitationText(guestId);
-    // }
-
 
 
     function setImageSources(location) {
