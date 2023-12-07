@@ -137,31 +137,7 @@
         return urlParams.get(param);
     }
 
-    const guestId = getQueryParam('guestid');
-
-    function fetchInvitationText(guestId) {
-      const csvUrl = "https://raw.githubusercontent.com/ThangLC304/ThangLC304.github.io/main/Common/WeddingGuestList%20-%20InviteData.csv"; // Replace with the URL to your hosted CSV file
-
-      fetch(csvUrl)
-        .then(response => response.text())
-        .then(csvText => {
-          const rows = csvText.split('\n');
-          for (let i = 1; i < rows.length; i++) { // Skip header row
-            const cells = rows[i].split(',');
-            if (cells[3] === guestId) { // Column D (Invite_ID) matches guestId
-              console.log("Found guestId: " + guestId)
-              console.log("Invitation text: " + cells[2])
-              if cells[2] {
-                document.getElementById('invitation_text').innerHTML = cells[2];
-              } else {
-                document.getElementById('invitation_text').innerHTML = 'Không tìm thấy mã mời';
-              }
-            }
-          }
-        })
-        .catch(error => console.error('Error fetching CSV:', error));
-    }
-
+    
 
     function setImageSources(location) {
         if (location === 'danang') {
@@ -211,13 +187,39 @@
         invitationContainer.style.transition = 'opacity 0.5s linear'; // Apply the transition
     }
 
-    
-
     function showInviteText() {
         inviteTextObject.style.visibility = 'visible';
         inviteTextObject.style.opacity = '1';
         inviteTextObject.style.transition = 'opacity 0.5s linear';
     }
+
+    const guestId = getQueryParam('guestid');
+
+    function fetchInvitationText(guestId) {
+      const csvUrl = "https://raw.githubusercontent.com/ThangLC304/ThangLC304.github.io/main/Common/WeddingGuestList%20-%20InviteData.csv"; // Replace with the URL to your hosted CSV file
+
+      fetch(csvUrl)
+        .then(response => response.text())
+        .then(csvText => {
+          const rows = csvText.split('\n');
+          for (let i = 1; i < rows.length; i++) { // Skip header row
+            const cells = rows[i].split(',');
+            if (cells[3] === guestId) { // Column D (Invite_ID) matches guestId
+              console.log("Found guestId: " + guestId)
+              console.log("Invitation text: " + cells[2])
+              if (cells[2]) {
+                document.getElementById('invitation_text').innerHTML = cells[2];
+              } else {
+                document.getElementById('invitation_text').innerHTML = 'Không tìm thấy mã mời';
+              }
+              showInviteText();
+            }
+          }
+        })
+        .catch(error => console.error('Error fetching CSV:', error));
+    }
+
+
 
     envelopeObject.addEventListener('click', function() {
         // disable hovering
