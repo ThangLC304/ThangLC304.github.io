@@ -195,8 +195,8 @@
     const guestId = getQueryParam('guestid');
 
     function fetchInvitationText(guestId) {
-      const csvUrl = "https://raw.githubusercontent.com/ThangLC304/ThangLC304.github.io/main/Common/WeddingGuestList%20-%20InviteData.csv"; // Replace with the URL to your hosted CSV file
-
+      // const csvUrl = "https://raw.githubusercontent.com/ThangLC304/ThangLC304.github.io/main/Common/WeddingGuestList%20-%20InviteData.csv"; // Replace with the URL to your hosted CSV file
+      const csvUrl = "Common/WeddingGuestList - InviteData.csv"; // Replace with the URL to your hosted CSV file
       fetch(csvUrl)
         .then(response => response.text())
         .then(csvText => {
