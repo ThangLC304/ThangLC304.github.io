@@ -74,12 +74,12 @@
     .envelope-container:hover .envelope-flipper, .envelope-container.hover .envelope-flipper {
       transform: rotateY(-180deg);
     }
-    .baohy-container:hover .baohy-flipper, .baohy-container.hover .baohy-flipper {
+    /* .baohy-container:hover .baohy-flipper, .baohy-container.hover .baohy-flipper {
       transform: rotateY(180deg);
     }
     .invitation-container:hover .invitation-flipper, .invitation-container.hover .invitation-flipper {
       transform: rotateY(-180deg);
-    }
+    } */
 
     .invite-text {
       font-family: 'Dancing Script', cursive;
@@ -90,6 +90,34 @@
       left: 50%;
       transform: translate(-50%, -50%);
       white-space: nowrap;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .qr-code {
+      position: absolute;
+      top: 44%;
+      left: 150%;
+      /* resize image */
+      /* transform: translate(0%, 50%); */
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .location-link {
+      font-family: 'Itim', cursive;
+      font-size: 18px;
+      font-weight: bold;
+      /* set text color */
+      color: #000000;
+      position: absolute;
+      top: 53%;
+      left: 114%; /* with = 220 left = 103% */
+      transform: translate(50%, 0%);
+      /* length */
+      width: 180px;
+      /* center words */
+      text-align: center;
       visibility: hidden;
       opacity: 0;
     }
@@ -124,6 +152,15 @@
     <div class="invite-text" id="invitation_text">
       Thân mời quý khách/bạn
     </div>
+
+    <div class="qr-code" id="qr_code" href="https://maps.app.goo.gl/tetvP2QCCVv6BwqY6">
+        <img src="Common/QR_code.png" alt="QR Code" width="100" height="100">
+    </div>
+
+    <div class="location-link" id="location_link">
+        <a href="https://maps.app.goo.gl/tetvP2QCCVv6BwqY6" id="url">
+          Địa điểm tiệc cưới
+        </a>
     
 
     
@@ -136,7 +173,12 @@
         return urlParams.get(param);
     }
 
-    
+    var showQR = false;
+
+    const locationHN = "https://maps.app.goo.gl/tetvP2QCCVv6BwqY6"
+    const locationtextHN = "Nhà hàng Garden Bistro - EcoPark"
+    const locationDN = "https://maps.app.goo.gl/FzkHAgmTphK7h52dA"
+    const locationtextDN = "Khách sạn Rosamia Đà Nẵng"
 
     function setImageSources(location) {
         if (location === 'danang') {
@@ -144,21 +186,33 @@
             document.getElementById('BaoHy').getElementsByClassName('back')[0].src = 'Danang/BaoHy_Back.png';
             document.getElementById('Invitation').getElementsByClassName('front')[0].src = 'Danang/ThiepMoi_Front.png';
             document.getElementById('Invitation').getElementsByClassName('back')[0].src = 'Danang/ThiepMoi_Back.png';
+            document.getElementById('url').setAttribute('href', locationDN);
+            document.getElementById('url').innerHTML = locationtextDN;
+            showQR = false;
         } else if (location === 'hanoi_md') {
             document.getElementById('BaoHy').getElementsByClassName('front')[0].src = 'Hanoi_MD/BaoHy_Front.png';
             document.getElementById('BaoHy').getElementsByClassName('back')[0].src = 'Hanoi_MD/BaoHy_Back.png';
             document.getElementById('Invitation').getElementsByClassName('front')[0].src = 'Hanoi_MD/ThiepMoi_Front.png';
             document.getElementById('Invitation').getElementsByClassName('back')[0].src = 'Hanoi_MD/ThiepMoi_Back.png';
+            document.getElementById('url').setAttribute('href', locationHN);
+            document.getElementById('url').innerHTML = locationtextHN;
+            showQR = true;
         } else if (location == 'hanoi_mm') {
             document.getElementById('BaoHy').getElementsByClassName('front')[0].src = 'Hanoi_MM/BaoHy_Front.png';
             document.getElementById('BaoHy').getElementsByClassName('back')[0].src = 'Hanoi_MM/BaoHy_Back.png';
             document.getElementById('Invitation').getElementsByClassName('front')[0].src = 'Hanoi_MM/ThiepMoi_Front.png';
             document.getElementById('Invitation').getElementsByClassName('back')[0].src = 'Hanoi_MM/ThiepMoi_Back.png';
+            document.getElementById('url').setAttribute('href', locationHN);
+            document.getElementById('url').innerHTML = locationtextHN;
+            showQR = true;
         } else if (location == 'hanoi_dd') {
             document.getElementById('BaoHy').getElementsByClassName('front')[0].src = 'Hanoi_DD/BaoHy_Front.png';
             document.getElementById('BaoHy').getElementsByClassName('back')[0].src = 'Hanoi_DD/BaoHy_Back.png';
             document.getElementById('Invitation').getElementsByClassName('front')[0].src = 'Hanoi_DD/ThiepMoi_Front.png';
             document.getElementById('Invitation').getElementsByClassName('back')[0].src = 'Hanoi_DD/ThiepMoi_Back.png';
+            document.getElementById('url').setAttribute('href', locationHN);
+            document.getElementById('url').innerHTML = locationtextHN;
+            showQR = true;
         }
     }
 
@@ -173,6 +227,8 @@
     const invitationContainer = document.getElementById('Invitation_Container');
     const invitationObject = document.getElementById('Invitation');
     const inviteTextObject = document.getElementById('invitation_text');
+    const qrCodeObject = document.getElementById('qr_code');
+    const locationLinkObject = document.getElementById('location_link');
 
     function showBaoHy() {
         baohyContainer.style.visibility = 'visible'; // Make the element visible
@@ -190,6 +246,28 @@
         inviteTextObject.style.visibility = 'visible';
         inviteTextObject.style.opacity = '1';
         inviteTextObject.style.transition = 'opacity 0.5s linear';
+    }
+
+    function showQRCode() {
+        qrCodeObject.style.visibility = 'visible';
+        qrCodeObject.style.opacity = '1';
+        qrCodeObject.style.transition = 'opacity 0.5s linear';
+    }
+
+    function hideQRCode() {
+        qrCodeObject.style.visibility = 'hidden';
+        qrCodeObject.style.opacity = '0';
+    }
+
+    function showLocationLink() {
+        locationLinkObject.style.visibility = 'visible';
+        locationLinkObject.style.opacity = '1';
+        locationLinkObject.style.transition = 'opacity 0.5s linear';
+    }
+
+    function hideLocationLink() {
+        locationLinkObject.style.visibility = 'hidden';
+        locationLinkObject.style.opacity = '0';
     }
 
     var guestId = getQueryParam('guestid');
@@ -239,17 +317,35 @@
         this.style.pointerEvents = 'none';
     });
     
-    baohyObject.addEventListener('mouseenter', function() {
-        // showInviteText();
-        // wait for 1.5s to show invitation-container
-        fetchInvitationText(guestId);
-        setTimeout(showInviteText, 1500);
-    });
+    // baohyContainer.addEventListener('mouseenter', function() {
+    //     baohyObject.style.transform = 'rotateY(180deg)';
+    //     fetchInvitationText(guestId);
+    //     // wait until the transformation is done
+    //     setTimeout(showInviteText, 1500);
+    // });
 
-    baohyObject.addEventListener('mouseleave', function() {
-        console.log('baohy mouse leave');
-        inviteTextObject.style.visibility = 'hidden';
-        inviteTextObject.style.opacity = '0';
+    baohyContainer.addEventListener('click', function() {
+        // check if the visbility of inviteTextObject is hidden or not
+        if (inviteTextObject.style.visibility === 'hidden') {
+            baohyObject.style.transform = 'rotateY(180deg)';
+            fetchInvitationText(guestId);
+            setTimeout(showInviteText, 1500);
+            if (showQR) {
+                setTimeout(showQRCode, 1500);
+            }
+            setTimeout(showLocationLink, 1500);
+        } else {
+            baohyObject.style.transform = 'rotateY(0deg)';
+            inviteTextObject.style.visibility = 'hidden';
+            inviteTextObject.style.opacity = '0';
+            if (showQR) {
+                hideQRCode();
+            }
+            hideLocationLink();
+        }
+        // baohyObject.style.transform = 'rotateY(0deg)';
+        // inviteTextObject.style.visibility = 'hidden';
+        // inviteTextObject.style.opacity = '0';
     });
 
 </script>
