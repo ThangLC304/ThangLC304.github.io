@@ -301,26 +301,34 @@
       document.getElementById('invitation_text').innerHTML = inviteText;
     }
     
+    function exitEnvelope() {
+        envelopeObject.style.transform = 'rotateY(0deg) translateY(100%)';
+        envelopeObject.style.opacity = '0';
+        envelopeObject.style.transition = 'transform 1.5s, opacity 1.5s';
 
-    envelopeObject.addEventListener('click', function() {
-        // disable hovering
-        this.onmouseenter = null;
-        this.onmouseleave = null;
-        this.classList.remove('hover');
-
-        // Ensure the front of the envelope is showing when moving out
-        this.style.transform = 'rotateY(0deg) translateY(100%)';
-        this.style.opacity = '0';
-        this.style.transition = 'transform 1.5s, opacity 1.5s';
-
-        // make baohy-container and invitation-container visible
         showBaoHy();
-        //  wait for 1.5s to show invitation-container
         setTimeout(showInvitation, 1500);
+    }
 
-        // Remove the ability to trigger the flip on hover
-        this.style.pointerEvents = 'none';
-    });
+    // envelopeObject.addEventListener('click', function() {
+    //     // disable hovering
+    //     this.onmouseenter = null;
+    //     this.onmouseleave = null;
+    //     this.classList.remove('hover');
+
+    //     // Ensure the front of the envelope is showing when moving out
+    //     this.style.transform = 'rotateY(0deg) translateY(100%)';
+    //     this.style.opacity = '0';
+    //     this.style.transition = 'transform 1.5s, opacity 1.5s';
+
+    //     // make baohy-container and invitation-container visible
+    //     showBaoHy();
+    //     //  wait for 1.5s to show invitation-container
+    //     setTimeout(showInvitation, 1500);
+
+    //     // Remove the ability to trigger the flip on hover
+    //     this.style.pointerEvents = 'none';
+    // });
     
     // baohyContainer.addEventListener('mouseenter', function() {
     //     baohyObject.style.transform = 'rotateY(180deg)';
@@ -329,16 +337,25 @@
     //     setTimeout(showInviteText, 1500);
     // });
 
+    function baohyAnimation() {
+        baohyObject.style.transform = 'rotateY(180deg)';
+        fetchInvitationText(guestId);
+        // wait until the transformation is done
+        setTimeout(showInviteText, 1500);
+        if (showQR) {
+            setTimeout(showQRCode, 1500);
+        }
+        setTimeout(showLocationLink, 1500);
+    }
+
+    setTimeout(exitEnvelope, 2000);
+
+    setTimeout(baohyAnimation, 4000)
+
     baohyContainer.addEventListener('click', function() {
         // check if the visbility of inviteTextObject is hidden or not
         if (inviteTextObject.style.visibility === 'hidden') {
-            baohyObject.style.transform = 'rotateY(180deg)';
-            fetchInvitationText(guestId);
-            setTimeout(showInviteText, 1500);
-            if (showQR) {
-                setTimeout(showQRCode, 1500);
-            }
-            setTimeout(showLocationLink, 1500);
+            baohyAnimation()
         } else {
             baohyObject.style.transform = 'rotateY(0deg)';
             inviteTextObject.style.visibility = 'hidden';
