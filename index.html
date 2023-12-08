@@ -213,11 +213,7 @@
     inviteText = guest_dict[guestId];
 
     function fetchInvitationText() {
-      if (inviteText) {
-        document.getElementById('invitation_text').innerHTML = inviteText;
-      } else {
-        document.getElementById('invitation_text').innerHTML = 'Không tìm thấy mã mời';
-      }
+      document.getElementById('invitation_text').innerHTML = inviteText;
     }
     
 
