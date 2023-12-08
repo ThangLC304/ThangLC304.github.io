@@ -189,7 +189,7 @@
             document.getElementById('url').setAttribute('href', locationDN);
             document.getElementById('url').innerHTML = locationtextDN;
             showQR = false;
-        } else if (location === 'hanoi_md') {
+        } else if ((location === 'hanoi_md') or (location === 'Hanoi_MD')) {
             document.getElementById('BaoHy').getElementsByClassName('front')[0].src = 'Hanoi_MD/BaoHy_Front.png';
             document.getElementById('BaoHy').getElementsByClassName('back')[0].src = 'Hanoi_MD/BaoHy_Back.png';
             document.getElementById('Invitation').getElementsByClassName('front')[0].src = 'Hanoi_MD/ThiepMoi_Front.png';
