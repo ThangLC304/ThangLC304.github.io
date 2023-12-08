@@ -194,28 +194,32 @@
 
     const guestId = getQueryParam('guestid');
 
-    function fetchInvitationText(guestId) {
-      // const csvUrl = "https://raw.githubusercontent.com/ThangLC304/ThangLC304.github.io/main/Common/WeddingGuestList%20-%20InviteData.csv"; // Replace with the URL to your hosted CSV file
-      const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRG45shOvsKRmjuilXzW2TMG6id-EyhE-WywvD3vvD7AYP199aNKzCmiLDjQwSaOd_lI0BaoqTmHrwo/pub?gid=0&single=true&output=csv";
-      fetch(csvUrl)
-        .then(response => response.text())
-        .then(csvText => {
-          const rows = csvText.split('\n');
-          for (let i = 1; i < rows.length; i++) { // Skip header row
-            const cells = rows[i].split(',');
-            if (cells[3] === guestId) { // Column D (Invite_ID) matches guestId
-              console.log("Found guestId: " + guestId)
-              console.log("Invitation text: " + cells[2])
-              if (cells[2]) {
-                document.getElementById('invitation_text').innerHTML = cells[2];
-              } else {
-                document.getElementById('invitation_text').innerHTML = 'Không tìm thấy mã mời';
-              }
-            }
-          }
-        })
-        .catch(error => console.error('Error fetching CSV:', error));
+    // Guest Dict Start
+		guest_dict = {'18c3e4a787b': 'Thân mời vợ chồng Suke',
+			'18c3e547cd5': 'Thân mời vợ chồng Hưng Bi',
+			'18c3e505347': 'Thân mời vợ chồng Dú',
+			'18c3e53b4b4': 'Thân mời vợ chồng Tép',
+			'18c44242556': 'Thân mời vợ chồng Trà Ly',
+			'18c44234506': 'Thân mời vợ chồng Đạt Nho',
+			'18c443220a8': 'Thân mời vợ chồng Trí Dũng',
+			'18c44277b08': 'Thân mời vợ chồng anh Alex',
+			'18c4439620a': 'Thân mời vợ chồng Quý',
+			'18c4434620f': 'Thân mời em Nhung',
+			'18c443b52e9': 'Thân mời em Ngân',
+			'18c44445f1d': 'Thân mời vợ chồng anh Tùng',
+			'18c44392904': 'Thân mời vợ chồng Lê Anh',
+			'18c4442b015': 'Thân mời vợ chồng Việt Trần'};// Guest Dict End
+    
+    inviteText = guest_dict[guestId];
+
+    function fetchInvitationText() {
+      if (inviteText) {
+        document.getElementById('invitation_text').innerHTML = inviteText;
+      } else {
+        document.getElementById('invitation_text').innerHTML = 'Không tìm thấy mã mời';
+      }
     }
+    
 
     envelopeObject.addEventListener('click', function() {
         // disable hovering
@@ -236,8 +240,7 @@
         // Remove the ability to trigger the flip on hover
         this.style.pointerEvents = 'none';
     });
-
-
+    
     baohyObject.addEventListener('mouseenter', function() {
         // showInviteText();
         // wait for 1.5s to show invitation-container
