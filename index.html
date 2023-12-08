@@ -189,7 +189,7 @@
             document.getElementById('url').setAttribute('href', locationDN);
             document.getElementById('url').innerHTML = locationtextDN;
             showQR = false;
-        } else if ((location === 'hanoi_md') or (location === 'Hanoi_MD')) {
+        } else if (location === 'hanoi_md' || location === 'Hanoi_MD') {
             document.getElementById('BaoHy').getElementsByClassName('front')[0].src = 'Hanoi_MD/BaoHy_Front.png';
             document.getElementById('BaoHy').getElementsByClassName('back')[0].src = 'Hanoi_MD/BaoHy_Back.png';
             document.getElementById('Invitation').getElementsByClassName('front')[0].src = 'Hanoi_MD/ThiepMoi_Front.png';
@@ -197,7 +197,7 @@
             document.getElementById('url').setAttribute('href', locationHN);
             document.getElementById('url').innerHTML = locationtextHN;
             showQR = true;
-        } else if (location == 'hanoi_mm') {
+        } else if (location == 'hanoi_mm' || location === 'Hanoi_MM') {
             document.getElementById('BaoHy').getElementsByClassName('front')[0].src = 'Hanoi_MM/BaoHy_Front.png';
             document.getElementById('BaoHy').getElementsByClassName('back')[0].src = 'Hanoi_MM/BaoHy_Back.png';
             document.getElementById('Invitation').getElementsByClassName('front')[0].src = 'Hanoi_MM/ThiepMoi_Front.png';
@@ -205,7 +205,7 @@
             document.getElementById('url').setAttribute('href', locationHN);
             document.getElementById('url').innerHTML = locationtextHN;
             showQR = true;
-        } else if (location == 'hanoi_dd') {
+        } else if (location == 'hanoi_dd' || location === 'Hanoi_DD') {
             document.getElementById('BaoHy').getElementsByClassName('front')[0].src = 'Hanoi_DD/BaoHy_Front.png';
             document.getElementById('BaoHy').getElementsByClassName('back')[0].src = 'Hanoi_DD/BaoHy_Back.png';
             document.getElementById('Invitation').getElementsByClassName('front')[0].src = 'Hanoi_DD/ThiepMoi_Front.png';
