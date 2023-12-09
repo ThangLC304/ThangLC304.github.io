@@ -245,7 +245,7 @@
     function showInviteText() {
         inviteTextObject.style.visibility = 'visible';
         inviteTextObject.style.opacity = '1';
-        inviteTextObject.style.transition = 'opacity 0.5s linear';
+        inviteTextObject.style.transition = 'opacity 1s linear';
     }
 
     function showQRCode() {
@@ -307,7 +307,7 @@
         envelopeObject.style.transition = 'transform 1.5s, opacity 1.5s';
 
         showBaoHy();
-        setTimeout(showInvitation, 1500);
+        setTimeout(showInvitation, 1000);
     }
 
     // envelopeObject.addEventListener('click', function() {
@@ -341,11 +341,11 @@
         baohyObject.style.transform = 'rotateY(180deg)';
         fetchInvitationText(guestId);
         // wait until the transformation is done
-        setTimeout(showInviteText, 1500);
+        setTimeout(showInviteText, 1000);
         if (showQR) {
-            setTimeout(showQRCode, 1500);
+            setTimeout(showQRCode, 1000);
         }
-        setTimeout(showLocationLink, 1500);
+        setTimeout(showLocationLink, 1000);
     }
 
     setTimeout(exitEnvelope, 2000);
