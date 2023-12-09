@@ -365,23 +365,23 @@
 
     setTimeout(baohyAnimation, 4000)
 
-    baohyContainer.addEventListener('click', function() {
-        // check if the visbility of inviteTextObject is hidden or not
-        if (inviteTextObject.style.visibility === 'hidden') {
-            baohyAnimation()
-        } else {
-            baohyObject.style.transform = 'rotateY(0deg)';
-            inviteTextObject.style.visibility = 'hidden';
-            inviteTextObject.style.opacity = '0';
-            if (showQR) {
-                hideQRCode();
-            }
-            hideLocationLink();
-        }
-        // baohyObject.style.transform = 'rotateY(0deg)';
-        // inviteTextObject.style.visibility = 'hidden';
-        // inviteTextObject.style.opacity = '0';
-    });
+    // baohyContainer.addEventListener('click', function() {
+    //     // check if the visbility of inviteTextObject is hidden or not
+    //     if (inviteTextObject.style.visibility === 'hidden') {
+    //         baohyAnimation()
+    //     } else {
+    //         baohyObject.style.transform = 'rotateY(0deg)';
+    //         inviteTextObject.style.visibility = 'hidden';
+    //         inviteTextObject.style.opacity = '0';
+    //         if (showQR) {
+    //             hideQRCode();
+    //         }
+    //         hideLocationLink();
+    //     }
+    //     // baohyObject.style.transform = 'rotateY(0deg)';
+    //     // inviteTextObject.style.visibility = 'hidden';
+    //     // inviteTextObject.style.opacity = '0';
+    // });
 
 </script>
 
