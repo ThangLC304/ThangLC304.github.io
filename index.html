@@ -248,12 +248,6 @@
     const qrCodeObject = document.getElementById('qr_code');
     const locationLinkObject = document.getElementById('location_link');
 
-    // if device is mobile, change body.style.overflow to 'auto', change the background photo to background-elegant.png
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 480) {
-      document.body.style.overflow = 'auto';
-      document.body.style.backgroundImage = "Common/background-elegant.png";
-    }
-
     function showBaoHy() {
         baohyContainer.style.visibility = 'visible'; // Make the element visible
         baohyContainer.style.opacity = '1'; // Start the fade-in
