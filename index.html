@@ -126,8 +126,8 @@
     .place-holder {
       position: absolute;
       top: 53%;
-      left: -4%;
-      opacity: 0;
+      left: -50%;
+      opacity: 1;
     }
   </style>
 </head>
@@ -247,11 +247,6 @@
     const inviteTextObject = document.getElementById('invitation_text');
     const qrCodeObject = document.getElementById('qr_code');
     const locationLinkObject = document.getElementById('location_link');
-
-    // if device is mobile then make it full screen
-    if (screen.width <= 480) {
-        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
-    }
 
     function showBaoHy() {
         baohyContainer.style.visibility = 'visible'; // Make the element visible
