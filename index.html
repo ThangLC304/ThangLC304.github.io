@@ -181,11 +181,11 @@
     const locationtextDN = "Khách sạn Rosamia Đà Nẵng"
 
     function setImageSources(location) {
-        if (location === 'danang' || location ==='DaNang') {
-            document.getElementById('BaoHy').getElementsByClassName('front')[0].src = 'Danang/BaoHy_Front.png';
-            document.getElementById('BaoHy').getElementsByClassName('back')[0].src = 'Danang/BaoHy_Back.png';
-            document.getElementById('Invitation').getElementsByClassName('front')[0].src = 'Danang/ThiepMoi_Front.png';
-            document.getElementById('Invitation').getElementsByClassName('back')[0].src = 'Danang/ThiepMoi_Back.png';
+        if (location === 'danang' || location === 'DaNang') {
+            document.getElementById('BaoHy').getElementsByClassName('front')[0].src = 'DaNang/BaoHy_Front.png';
+            document.getElementById('BaoHy').getElementsByClassName('back')[0].src = 'DaNang/BaoHy_Back.png';
+            document.getElementById('Invitation').getElementsByClassName('front')[0].src = 'DaNang/ThiepMoi_Front.png';
+            document.getElementById('Invitation').getElementsByClassName('back')[0].src = 'DaNang/ThiepMoi_Back.png';
             document.getElementById('url').setAttribute('href', locationDN);
             document.getElementById('url').innerHTML = locationtextDN;
             showQR = false;
